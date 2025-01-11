@@ -43,7 +43,9 @@ const PersonalInfo = () => {
   return (
     <div className="p-6 md:max-w-3xl lg:max-w-2xl mx-auto">
       <div className="">
-        <h1 className="text-4xl font-bold text-blue-950">Personal Info</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-blue-950">
+          Personal Info
+        </h1>
         <p className="text-black/40 text-md leading-relaxed tracking-wider">
           Please provide your name, email, and phone number.
         </p>

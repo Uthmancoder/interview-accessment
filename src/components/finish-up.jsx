@@ -25,7 +25,9 @@ const FinishUp = () => {
   return (
     <div className="pb-4 md:pb-0">
       <div className="p-6 md:max-w-3xl lg:max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold text-blue-950">Finishing Up</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-blue-950">
+          Finishing Up
+        </h1>
         <p className="text-black/40 text-md leading-relaxed tracking-wider">
           Double check everything looks okay before confirming
         </p>

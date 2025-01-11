@@ -58,7 +58,9 @@ const PickAddOns = () => {
     <div>
       <div className="p-6 md:max-w-3xl lg:max-w-2xl mx-auto">
         <div>
-          <h1 className="text-4xl font-bold text-blue-950">Pick add-ons</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-blue-950">
+            Pick add-ons
+          </h1>
           <p className="text-black/40 text-md leading-relaxed tracking-wider">
             Add-ons help enhance your gaming experience.
           </p>

@@ -58,13 +58,15 @@ const SelectPlan = () => {
     <div>
       <div className="p-6 md:max-w-3xl lg:max-w-2xl mx-auto">
         <div>
-          <h1 className="text-4xl font-bold text-blue-950">Select Plan</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-blue-950">
+            Select Plan
+          </h1>
           <p className="text-black/40 text-md leading-relaxed tracking-wider">
             You have the option of monthly or yearly billing
           </p>
         </div>
 
-        <div className="grid md:flex items-center gap-4 my-10 ">
+        <div className="grid md:flex items-center gap-4 my-5 md:my-10 ">
           {plans.map((data, index) => (
             <div
               key={index}
