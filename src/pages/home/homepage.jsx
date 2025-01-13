@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { steps } from "../../utils/constants";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -21,7 +21,7 @@ const HomePage = () => {
 
   return (
     <div className="bg-black/5 md:min-h-screen flex items-center">
-      <div className="w-full md:w-11/12 lg:w-10/12 bg-white  lg:w-9/12 mx-auto shadow-lg md:p-4 rounded-lg grid md:grid-cols-7">
+      <div className="w-full md:w-11/12  bg-white  lg:w-full max-w-[800px] mx-auto shadow-lg md:p-4 rounded-lg grid md:grid-cols-7">
         {/* Sidebar */}
         <div className="md:col-span-3 lg:col-span-2 sideBar">
           <div className="flex items-center justify-center md:grid md:justify-start ">
@@ -37,7 +37,7 @@ const HomePage = () => {
                   onClick={() => {
                     dispatch(setCurrentStep(index + 1));
                   }}
-                  className="flex items-center justify-start mx-auto md:mx-0 gap-4 mt-6 cursor-pointer"
+                  className="flex items-center justify-start mx-5 md:mx-0 gap-4 mt-6 cursor-pointer"
                 >
                   {/* Step Indicator */}
                   <div

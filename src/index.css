@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.sideBar{
+.sideBar {
   width: 100%;
-  height: 70vh;
-  background : url(./assets/bg-sidebar-desktop.svg);
+  height: 100%;
+  min-height: 70vh;
+  background: url(./assets/bg-sidebar-desktop.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13,8 +14,7 @@
   padding: 20px;
 }
 
-
-.textColor{
+.textColor {
   color: rgb(173, 190, 255);
 }
 
@@ -48,14 +48,14 @@
 }
 
 @media screen and (max-width: 768px) {
-  .sideBar{
-    height: 30vh;
-    background : url(./assets/bg-sidebar-mobile.svg);
+  .sideBar {
+    height: 100%;
+    min-height: 30vh;
+    background: url(./assets/bg-sidebar-mobile.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 0;
     padding: 20px;
   }
-  
 }
