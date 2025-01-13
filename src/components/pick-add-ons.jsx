@@ -46,7 +46,6 @@ const PickAddOns = () => {
 
   // Move to Next Step
   const handleNextStep = () => {
-    // Filter unique add-ons (in case of unexpected duplicates)
     const uniqueAddOns = [
       ...new Map(selectedAddOns.map((addOn) => [addOn.title, addOn])).values(),
     ];
@@ -111,7 +110,12 @@ const PickAddOns = () => {
           <button
             onClick={handleNextStep}
             type="submit"
-            className="bg-blue-950 text-white py-3 ml-auto px-10 rounded-md hover:bg-blue-700 w-fit"
+            disabled={selectedAddOns.length === 0} // Disable if no add-ons selected
+            className={`py-3 ml-auto px-10 rounded-md w-fit ${
+              selectedAddOns.length === 0
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-950 text-white hover:bg-blue-700"
+            }`}
           >
             Next Step
           </button>

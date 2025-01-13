@@ -8,9 +8,16 @@ import {
 
 const FinishUp = () => {
   const dispatch = useDispatch();
-  const { userPlan, addOns } = useSelector((state) => state.personalInfo);
+  const { userPlan = {}, addOns = [] } = useSelector(
+    (state) => state.personalInfo
+  );
 
-  const { title, duration, price: userPlanPrice } = userPlan;
+  const {
+    title = "Arcade monthly",
+    duration = "Monthly",
+    price: userPlanPrice = 10000,
+  } = userPlan;
+  // console.log("userPlanPrice : ", userPlanPrice);
 
   // Helper function to extract numeric values from price strings
   const extractPrice = (priceString) => {
@@ -71,7 +78,11 @@ const FinishUp = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between md:mt-[25%] lg:mt-[10%] px-4 md:pl-6 md:pr-5 lg:pl-8 lg:pr-4 hidden md:flex">
+      <div
+        className={`flex items-center justify-between md:mt-[25%]  px-4 md:pl-6 md:pr-5 lg:pl-8 lg:pr-4 hidden md:flex ${
+          addOns.length > 2 ? "lg:mt-[5%]" : "lg:mt-[10%]"
+        }`}
+      >
         <div>
           <h2
             onClick={() => dispatch(decrementStep())}

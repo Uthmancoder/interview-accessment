@@ -53,7 +53,9 @@ const PersonalInfo = () => {
         <form className="grid gap-4 mt-4 md:mt-10" onSubmit={handleSubmit}>
           {/* Name Field */}
           <div className="grid gap-2">
-            <label htmlFor="name">Name</label>
+            <label className="text-blue-950" htmlFor="name">
+              Name
+            </label>
             <input
               type="text"
               name="name"
@@ -74,7 +76,9 @@ const PersonalInfo = () => {
 
           {/* Email Field */}
           <div className="grid gap-2">
-            <label htmlFor="email">Email</label>
+            <label className="text-blue-950" htmlFor="email">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -95,7 +99,9 @@ const PersonalInfo = () => {
 
           {/* Phone Number Field */}
           <div className="grid gap-2">
-            <label htmlFor="phoneNumber">Phone Number</label>
+            <label className="text-blue-950" htmlFor="phoneNumber">
+              Phone Number
+            </label>
             <input
               type="tel"
               name="phoneNumber"

@@ -13,11 +13,13 @@ import {
 const SelectPlan = () => {
   const dispatch = useDispatch();
   const { userPlan } = useSelector((state) => state.personalInfo);
+
+  // Default values for plan selection
   const {
     duration = "monthly",
-    icon = advanced,
-    price = "+$12/mo",
     title = "Arcade",
+    monthlyPrice = 9,
+    icon = arcade,
   } = userPlan;
 
   const plans = [
@@ -39,19 +41,34 @@ const SelectPlan = () => {
   ];
 
   const [switchDuration, setSwitchDuration] = useState(
-    duration !== "monthly" ? true : false
+    duration === "yearly" // Set toggle based on previous selection
   );
-  const [selectedPlan, setSelectedPlan] = useState(
-    { icon, title, price } || plans[0]
-  );
+  const [selectedPlan, setSelectedPlan] = useState({
+    title,
+    icon,
+    monthlyPrice,
+  });
 
+  // Helper function to calculate the price
   const getPrice = (price) => {
     if (switchDuration) {
-      // Yearly pricing with a discount (10% off)
+      // Yearly pricing with a 10% discount
       const yearlyPrice = price * 12 * 0.9;
       return `$${yearlyPrice.toFixed(2)}/yr`;
     }
     return `$${price}/mo`;
+  };
+
+  // Save selected plan and move to the next step
+  const handleNextStep = () => {
+    dispatch(
+      setUserPlan({
+        ...selectedPlan,
+        price: getPrice(selectedPlan.monthlyPrice),
+        duration: switchDuration ? "yearly" : "monthly",
+      })
+    );
+    dispatch(incrementStep());
   };
 
   return (
@@ -66,28 +83,30 @@ const SelectPlan = () => {
           </p>
         </div>
 
-        <div className="grid md:flex items-center gap-4 my-5 md:my-10 ">
-          {plans.map((data, index) => (
+        {/* Plans List */}
+        <div className="grid md:flex items-center gap-4 my-5 md:my-10">
+          {plans.map((plan) => (
             <div
-              key={index}
-              onClick={() => setSelectedPlan(data)}
+              key={plan.title}
+              onClick={() => setSelectedPlan(plan)}
               className={`border p-6 flex md:grid gap-6 rounded-md w-full cursor-pointer ${
-                selectedPlan.title === data.title
+                selectedPlan.title === plan.title
                   ? "border-blue-800 bg-blue-50"
                   : "border-slate-300"
-              } `}
+              }`}
             >
-              <img className="w-10 h-10 rounded-full" src={data.icon} alt="" />
+              <img className="w-10 h-10 rounded-full" src={plan.icon} alt="" />
               <div className="grid gap-2 md:gap-6">
                 <h2 className="text-xl text-blue-950 font-semibold">
-                  {data.title}
+                  {plan.title}
                 </h2>
-                <h2>{getPrice(data.monthlyPrice)}</h2>
+                <h2>{getPrice(plan.monthlyPrice)}</h2>
               </div>
             </div>
           ))}
         </div>
 
+        {/* Toggle Duration */}
         <div className="flex rounded-md items-center justify-center p-2 gap-5 bg-blue-50">
           <p>Monthly</p>
           <div onClick={() => setSwitchDuration(!switchDuration)}>
@@ -100,27 +119,16 @@ const SelectPlan = () => {
           <p>Yearly</p>
         </div>
 
+        {/* Navigation Buttons */}
         <div className="flex items-center justify-between mt-[20%] hidden md:flex">
-          <div>
-            <h2
-              onClick={() => dispatch(decrementStep())}
-              className="cursor-pointer text-gray-500 font-semibold"
-            >
-              Go Back
-            </h2>
-          </div>
-
+          <h2
+            onClick={() => dispatch(decrementStep())}
+            className="cursor-pointer text-gray-500 font-semibold"
+          >
+            Go Back
+          </h2>
           <button
-            onClick={() => {
-              dispatch(
-                setUserPlan({
-                  ...selectedPlan,
-                  price: getPrice(selectedPlan.monthlyPrice),
-                  duration: switchDuration ? "yearly" : "monthly",
-                })
-              );
-              dispatch(incrementStep());
-            }}
+            onClick={handleNextStep}
             type="submit"
             className="bg-blue-950 text-white py-3 ml-auto px-10 rounded-md hover:bg-blue-700 w-fit"
           >
